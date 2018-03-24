@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% load filters %}
+{% block content %}
+
+  <!-- ********************** --> 
+  <!--     I N T R O          -->
+  <!-- ********************** --> 
+  <div id="intro_2">
+    <div id="intro_wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+      <div class="container_12">
+        <div id="breadcrumbs" class="grid_12">
+          <a href="/">Магазин</a>
+           &gt; <a href="/cart">Корзина</a>
+        </div>
+        <h1>Закупка</h1>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+   </div>
+  <!-- end of intro -->
+
+
+  <!-- ********************** --> 
+  <!--      C O N T E N T     --> 
+  <!-- ********************** -->
+<div class="container">
+        <div class="row">
+          <div class="col-md-12"
+  <div id="content" class="container_12">
+
+    <div id="shopping_cart" class="grid_12">
+
+      <form id="cart" class="clearfix" >
+        <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <th width="65">Удалить</th>
+            <th width="60">Изоброжение</th>
+            <th width="100">Товар</th>
+            <th width="250">Подробности</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Общая цена</th>
+          </tr>
+
+            {% for item in cart_t %}
+
+            {% with product=item.product %}
+
+             <form action="{% url 'cart:CartAdd' product.maincategory product.slug %}" method="post" class="add"></form>
+
+            <tr class="even">
+            <td valign="middle"><a href="{% url 'cart:CartRemove' product.slug %}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+            <td valign="middle"><a href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" height="60px" alt="{{product.name}}" /></a></td>
+            <td valign="middle"><a href="{{product.get_absolute_url}}"><strong>{{product.property_1}} {{product.name}}</strong></a></td>
+            <td valign="middle"> {{product.property_1}} {{product.property_2}} {{product.property_3}} {{product.property_4}} {{product.property_5}}</td>
+            <td valign="middle"><form action="{% url 'cart:CartAdd' product.maincategory.slug  product.slug %}" method="post" class="add">
+              {{ item.update_quantity_form.quantity }}
+              {{ item.update_quantity_form.update }}
+              {% csrf_token %}
+              <input type="submit" value="Пресчитать">
+            </form>    </td>
+              <td valign="middle">{{product.price|price_convert}}<span class="s_currency s_after"> сум</span></td>
+              <td valign="middle"> {{item.total_price|price_convert}}<span class="s_currency s_after"> сум</span>
+
+              </td>
+            </tr>
+
+
+          {% endwith %}
+            {% endfor %}
+
+        </table>
+        <br />
+        <p class="s_total"><strong>В сумме:</strong>  {{total_price|price_convert }}<span class="s_currency s_after"> сум</span></p>
+        <p class="s_total"><strong>Доставка:</strong> 30 000<span class="s_currency s_after"> сум</span></p>
+        <p class="s_total s_secondary_color last"><strong>Общий счет заказа:</strong>  {{total_price|price_convert_dos }}<span class="s_currency s_after"> сум</span></p>
+
+        <div class="clear"></div>
+        <br />
+
+        <a class="s_button_1 s_ddd_bgr left" href="/notebooks"><span class="s_text">Продолжить закуп</span></a>
+        <button class="s_button_1 s_main_color_bgr" type="submit"><span class="s_text">Оформить заказ</span></button>
+        <a class="s_button_1 s_main_color_bgr" href=""><span class="s_text">Пересчитать</span></a>
+      </form>
+
+    </div>
+
+    <div class="clear"></div>
+    <br />
+    <br />
+    
+  </div>
+      </div> </div>
+  <!-- end of content -->
+{% endblock %}

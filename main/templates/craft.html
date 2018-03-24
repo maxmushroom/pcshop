@@ -1,0 +1,197 @@
+{% extends 'base.html' %} {% load filters %}
+{% block content %}
+
+<!-- ********************** -->
+<!--     I N T R O          -->
+<!-- ********************** -->
+<div id="intro_2">
+    <div id="intro_wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container_12">
+                        <div id="breadcrumbs" class="grid_12">
+                            <a href="/">Магазин</a>
+                            &gt; <a href="/cart">Cборка</a>
+                        </div>
+                        <h1>Сборка</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of intro -->
+
+
+<!-- ********************** -->
+<!--      C O N T E N T     -->
+<!-- ********************** -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Комплектующие</h2>
+            <div class="form_craft">
+                <form id="main-craft" method="post">
+                    {% csrf_token %}
+                    <label>{{form.property_1.label}}:</label>{{form.property_1}} <span class="compl_price">{{price.0|price_convert}}</span>
+                    <label>{{form.property_2.label}}:</label>{{form.property_2}} <span class="compl_price">{{price.1|price_convert}}</span>
+                    <label>{{form.property_3.label}}:</label>{{form.property_3}} <span class="compl_price">{{price.2|price_convert}}</span>
+                    <label>{{form.property_4.label}}:</label>{{form.property_4}} <span class="compl_price">{{price.3|price_convert}}</span>
+                    <label>{{form.property_5.label}}:</label>{{form.property_5}} <span class="compl_price">{{price.4|price_convert}}</span>
+                    <label>{{form.property_6.label}}:</label>{{form.property_6}} <span class="compl_price" >{{price.5|price_convert}}</span>
+                    <label>{{form.property_7.label}}:</label>{{form.property_7}} <span class="compl_price">{{price.6|price_convert}}</span>
+                    <label>{{form.property_8.label}}:</label>{{form.property_8}} <span class="compl_price">{{price.7|price_convert}}</span>
+                    <label>{{form.property_9.label}}:</label>{{form.property_9}} <span class="compl_price">{{price.8|price_convert}}</span>
+
+                </form>
+            </div>
+
+
+            <script type="text/javascript">
+                    function formOnChange()
+                    {
+                    document.getElementById('main-craft').submit();
+                    }
+                    jQuery("#main-craft").bind("change", formOnChange);
+            </script>
+
+            {% if error_cpu != "" or error_ram != "" %}
+            <div class="alert alert-danger">
+                {{error_cpu}} <br />
+                {{error_ram}} <br />
+            </div>
+            {% endif %}
+            {{checker}}
+             <p class="s_total s_secondary_color last p_right"><strong>Общая сумма Кейса:</strong> <span id="case_price"></span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="left-table">
+            <div class="col-md-6">
+                <h2>Список переферии</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th width="5%"></th>
+                        <th width="25%">Устроийство</th>
+                        <th width="30%">Наименование</th>
+                        <th width="25%">Модель</th>
+                        <th>Цена</th>
+                    </tr>
+                    {% for product_perf in detail_perf.values %}
+                    <tr>
+                        <td><a href="{% url 'cart:CraftRemove' product_perf.slug product_perf.maincategory.slug %}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                        <td>{{product_perf.category.name}}</td>
+                        <td><a href="{{product_perf.get_absolute_url}}">{{product_perf.name}}</a></td>
+                        <td>{{product_perf.property_1}}</td>
+                        <td class="perf_colum">{{product_perf.price|price_convert_int}}</td>
+                    </tr>
+                    {%endfor%}
+                    <tr>
+                        <td colspan="4" ><strong>Общая стоймость Переферии</strong></td>
+                        <td><span id="perf_sum"></span></td>
+
+                    </tr>
+
+                </table>
+                <a class="s_button_1 s_ddd_bgr" href="/perf"><span class="s_text">Докупить Переферии</span></a>
+            </div>
+
+            <div class="col-md-6">
+                <h2>Список Акссесуаров</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th width="5%"></th>
+                        <th width="25%">Устроийство</th>
+                        <th width="25%">Наименование</th>
+                        <th width="25%">Модель</th>
+                        <th>Цена</th>
+                    </tr>
+                    {% for product_perf in detail_acses.values %}
+                    <tr>
+                        <td><a href="{% url 'cart:CraftRemove' product_perf.slug product_perf.maincategory.slug %}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                        <td>{{product_perf.category.name}}</td>
+                        <td><a href="{{product_perf.get_absolute_url}}">{{product_perf.name}}</a></td>
+                        <td>{{product_perf.property_1}}</td>
+                        <td class="acses_colum">{{product_perf.price|price_convert_int}}</td>
+                    </tr>
+                    {%endfor%}
+                    <tr>
+                        <td colspan="4" ><strong>Общая стоймость аксесуаров</strong></td>
+                        <td><span id="acses_sum"></span></td>
+
+                    </tr>
+
+
+                </table>
+                <a class="s_button_1 s_ddd_bgr" href="/acses"><span class="s_text">Докупить Аксесуаров</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="com-md-12">
+            <p class="s_total s_secondary_color last p_right"><strong id="sum_price">Общая сумма сборки: </strong></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+window.onload = function() {
+                            var acses_sum=0;
+                            var acses_items = document.getElementsByClassName("acses_colum");
+                            for (var i=0; i < acses_items.length; i++)
+                                {
+                                acses_sum += Number(acses_items[i].innerHTML);
+                                }
+
+
+                            var perf_sum=0;
+                            var perf_items = document.getElementsByClassName("perf_colum");
+                            for (var i=0; i < perf_items.length; i++)
+                                {
+                                perf_sum += Number(perf_items[i].innerHTML);
+                                }
+
+
+                            var complprice=0;
+                            function Morph(stroka) {
+                                var strok=String(stroka)
+                                var stolb = strok.split(" ");
+                                var stolb = stolb.reverse();
+                                var multiple = 1;
+                                var abs_price = 0;
+                                for (var i=1; i<stolb.length; i++) {
+                                    abs_price += Number(stolb[i])*Number(multiple);
+                                    multiple += '000';
+                                }
+                                return abs_price;
+                            };
+
+                            function humanize_number(chislo) {
+                                fut_stroka=String(chislo);
+                                if (fut_stroka.length < 3) {
+                                    return fut_stroka;
+                                };
+                                var list=[];
+                                var i_for_cycle=fut_stroka.length;
+                                while (i_for_cycle>0) {
+                                    list[list.length] = (fut_stroka.slice(-3));
+                                    var fut_stroka = fut_stroka.slice(0,-3);
+                                    i_for_cycle -= 3;
+
+                                }
+                                list=list.reverse()
+                                return list.join(' ');
+                            }
+
+                            stolbiki=document.getElementsByClassName("compl_price");
+                            for (var i=0; i<stolbiki.length; i++) {
+                                complprice += Morph(stolbiki[i].innerHTML);
+                            }
+                            document.getElementById("perf_sum").innerHTML+=humanize_number(perf_sum)+' сум';
+                            document.getElementById("acses_sum").innerHTML+=humanize_number(acses_sum)+' сум';
+                            document.getElementById("case_price").innerHTML+=humanize_number(complprice)+' сум';
+                            document.getElementById("sum_price").innerHTML+=humanize_number(complprice+acses_sum+perf_sum)+' сум';
+
+                            };
+</script>
+{% endblock %}

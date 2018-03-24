@@ -1,0 +1,178 @@
+
+{% extends 'base.html' %} {% load static %} {%load filters%}
+{% block content %}
+  <!-- ********************** --> 
+  <!--     I N T R O          --> 
+  <!-- ********************** --> 
+  <div id="intro">
+
+      <div class="container">
+      <div id="product_intro" >
+        <div class="row">
+           <div id="intro_wrap">
+             <div class="col-lg-8 col-md-12">
+        <div id="product_intro_info" >
+
+          <div style="position: relative;">
+            <div class="high-item">
+            <h2><a href="{{shake.0.get_absolute_url}}">{{shake.0.name}}</a></h2>
+
+            <div class="s_rating_holder">
+              <p class="s_rating s_rating_big s_rating_5"> <span style="width: 60%;" class="s_percent"></span> </p>
+              <span class="s_average">3 out of 5</span> </div>
+
+            <p class="s_desc"> {% autoescape off %}{{ shake.0.description|truncatechars_html:600 }} {% endautoescape %}  </p>
+
+              <div class="s_price_holder">
+              <p class="s_price"> <span class="s_currency s_before">{{shake.0.price|price_convert}}</span>сум</p>
+              </div>
+              </div>
+          </div>
+          <div style="position: relative; display: none;">
+             <div class="high-item">
+            <h2><a href="{{shake.1.get_absolute_url}}">{{shake.1.name}}</a></h2>
+
+            <p class="s_desc"> {% autoescape off %}{{ shake.1.description|truncatechars_html:600 }} {% endautoescape %}  </p>
+
+               <div class="s_price_holder">
+              <p class="s_price"> <span class="s_currency s_before">{{shake.1.price|price_convert}}</span>сум</p>
+               </div>
+               </div>
+          </div>
+          <div style="position: relative; display: none;">
+            <div class="high-item">
+                 <h2><a href="{{shake.2.get_absolute_url}}">{{shake.2.name}}</a></h2>
+
+                  <p class="s_desc"> {% autoescape off %}{{ shake.2.description|truncatechars_html:600 }} {% endautoescape %} </p>
+
+                 <div class="s_price_holder">
+                  <p class="s_price"> <span class="s_currency s_before">{{shake.2.price|price_convert}}</span>сум</p>
+                 </div>
+            </div>
+          </div>
+          <div style="position: relative; display: none;">
+             <div class="high-item">
+            <h2><a href="{{shake.1.get_absolute_url}}">{{shake.1.name}}</a></h2>
+
+            <p class="s_desc"> {% autoescape off %}{{ shake.1.description|truncatechars_html:600 }} {% endautoescape %} </p>
+
+                <div class="s_price_holder">
+              <p class="s_price"> <span class="s_currency s_before">{{shake.1.price|price_convert}}</span>сум </p>
+                </div>
+                </div>
+          </div>
+          <div style="position: relative; display: none;">
+             <div class="high-item">
+            <h2><a href="{{shake.2.get_absolute_url}}">{{shake.2.name}}</a></h2>
+
+            <p class="s_desc"> {% autoescape off %}{{ shake.2.description|truncatechars_html:600 }} {% endautoescape %} </p>
+
+                <div class="s_price_holder">
+              <p class="s_price"> <span class="s_currency s_before">{{shake.2.price|price_convert}}</span> сум</p>
+                </div>
+                </div>
+            </div>
+        </div>
+          </div>
+        <div class="col-lg-4 col-md-12">
+
+        <div id="product_intro_preview">
+          <div class="slides_container">
+
+              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.0.image}}"  width="300px" max-height="300px"  alt="" /></a></div>
+
+              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.1.image}}" width="300px" max-height="300px" alt=""  /></a></div>
+
+              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.2.image}}" width="300px" max-height="300px" alt="" /></a></div>
+
+              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.1.image}}" width="300px" max-height="300px" alt="" /></a></div>
+
+              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.2.image}}" width="300px" max-height="300px" alt="" /></a></div>
+
+
+
+          </div>
+            <a class="s_button_prev" href="static javascript:;"></a>
+          <a class="s_button_next" href="static javascript:;"></a>
+        </div>
+
+        </div>
+
+  </div>
+  </div>
+    </div>
+  </div>
+  </div>
+
+  <script type="text/javascript" src="{% static 'js/jquery/jquery.slides.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/shoppica.products_slide.js' %}"></script>
+  <!-- end of intro --> 
+  
+  
+  <!-- ********************** --> 
+  <!--      C O N T E N T     --> 
+  <!-- ********************** -->
+
+  <div id="content" class="container_12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="welcome">
+          <h2>PCshop.uz</h2>
+          <p>Это магазин бла бла бла бла бла и еще много разгоного текста короче<br/>
+          </p>
+        </div>
+       </div>
+     </div>
+    <div class="clear"></div>
+    <div class="row">
+    <div id="special_home" class="grid_12">
+      <h2 class="s_title_1"><span class="s_main_color">Популярные</span></h2>
+      <div class="clear"></div>
+      <div class="s_listing s_grid_view clearfix">
+        {%for product in pop_c%}
+        {% cycle link_c.0 link_c.1 link_c.2 link_c.3 link_c.4 link_c.5 as link_cc silent %}
+
+        <div class="s_item grid_2 col-md-2"> <p class="mobi_descrip">{{product.property_2}}, {{product.property_3}}, {{product.property_4}}, {{product.property_5}}, {{product.property_6}}</p>
+          <a class="s_thumb" href="{{ link_cc }}">
+
+            <img src="media/{{product.image}}" width="140"  max-height="140" /></a>
+          <h3><a href="{{ link_cc }}">{{product.name}}</a></h3>
+
+          <p class="s_model">{{product.property_1}}</p>
+          <p class="s_price">{{product.price|price_convert}} <br/><span class="s_currency s_before"> </span>сум</p>
+          <a class="s_button_add_to_cart" href="product.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+        </div>
+
+        {% endfor %}
+        <div class="clear"></div>
+
+          </div>
+      </div>
+    </div>
+
+    <div id="latest_home">
+      <h2 class="s_title_1"><span class="s_main_color">Новинки</span></h2>
+      <div class="clear"></div>
+      <div class="s_listing s_grid_view clearfix">
+        {% for product in news %}
+         {% cycle link_n.0 link_n.1 link_n.2 link_n.3 link_n.4 link_n.5 as link_nn silent %}
+
+        <div class="s_item grid_2 col-md-2"> <p class="mobi_descrip">{{product.property_2}}, {{product.property_3}}, {{product.property_4}}, {{product.property_5}}, {{product.property_6}}</p>
+          <a class="s_thumb" href="{{link_nn}}"><img src="media/{{product.image}}" width="140"  max-height="140" /></a>
+          <h3><a href="{{link_nn}}">{{product.name}}</a></h3>
+          <p class="s_model">{{product.property_1}}</p>
+          <p class="s_price">{{product.price|price_convert}} <br/><span class="s_currency s_before"> </span>сум</p>
+          <a class="s_button_add_to_cart" href="product.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of content --> 
+  
+  
+  
+  {% endblock %}

@@ -1,0 +1,103 @@
+/* Minification failed. Returning unminified contents.
+(43,1): run-time error CSS1019: Unexpected token, found '@'
+ */
+.blog-container {
+    padding-top: 15px;
+}
+
+    .blog-container h4 {
+        font-size: 20px;
+    }
+
+    .blog-container h1,
+    .blog-container h2,
+    .blog-container h3,
+    .blog-container h4,
+    .blog-container h5,
+    .blog-container h6 {
+        color: #444;
+        font-weight: normal;
+        line-height: 1.2;
+        margin: 0;
+        margin-bottom: 22px;
+        padding: 0;
+    }
+
+    .blog-container .blog-widget {
+        margin-bottom: 50px;
+    }
+
+    .blog-container .blog-article {
+        margin-bottom: 30px;
+    }
+
+        .blog-container .blog-article .post-preview {
+            display: inline-block;
+        }
+
+        .blog-container .blog-article .post-content p {
+            text-indent: 30px;
+        }
+
+        .blog-container .blog-article img {
+            display: block;
+        }
+
+@@media (max-width: 500px) {
+    .blog-container .blog-article img {
+        display: none;
+    }
+}
+
+.post-text,
+.post-text span,
+.post-text font {
+    color: #222 !important;
+    padding-right: 5px !important;
+    margin-right: -5px !important;
+    line-height: 1.56 !important;
+    font-size: 16px !important;
+    overflow: hidden !important;
+    font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif !important;
+}
+
+.btn_x-large {
+    padding: 0 13px;
+    height: 36px;
+    border-radius: 3px;
+    font-size: 13px;
+    border: 1px solid #75aeca;
+    background-color: transparent;
+    color: #548eaa;
+    margin-top: 17px;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    user-select: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: auto;
+    font-weight: 500;
+    font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
+}
+
+.post-title-link {
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 500;
+    font-size: 28px;
+    color: #444;
+    line-height: 36.4px;
+}
+
+.calc-size {
+    zoom: 80%;
+}
+
+    .calc-size #calc-btn {
+        margin-top: -10px;
+    }
+

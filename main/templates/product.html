@@ -1,0 +1,369 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load filters %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+<!-- ********************** -->
+<!--     I N T R O          -->
+<!-- ********************** -->
+
+
+
+<div id="intro_2">
+    <div id="intro_wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container_12">
+
+                        <div id="breadcrumbs" class="grid_12">
+                            <a href="/">Магазин</a>
+                            &gt;
+                            <a href="/{{product.maincategory.slug}}">{{hub.maincategory.name}}</a>
+                            &gt;
+                            <a href="/{{product.categories_module.get_absolute_url}}">{{hub.category.name}}</a>
+                        </div>
+                        <h1>{{hub.category.name}} {{hub.name}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of intro -->
+
+
+<!-- ********************** -->
+<!--      C O N T E N T     -->
+<!-- ********************** -->
+<div class="container">
+    <div class="row">
+        <div id="content" class="product_view container_16">
+            <div class="col-md-3">
+                <div id="right_col" class="grid_3">
+                    {% include 'cart_col.html'%}
+                    <div id="featured_side" class="s_box clearfix">
+                        <h2>Похожие товары</h2>
+                        {{varible}}
+                        {% for rel_product in related %}
+                        <div class="s_item s_size_1 clearfix">
+                            <a class="s_thumb" href="{{rel_product.get_absolute_url}}"><img src="../../../media/{{ rel_product.image }}" alt="{{rel_product.name}}" /></a>
+                            <h3><a href="{{rel_product.get_absolute_url}}">{{rel_product.property_1}} {{rel_product.name}}</a></h3>
+                            <p><a href="{{rel_product.get_absolute_url}}"><span class="s_main_color"><span class="s_currency s_before">{{rel_product.price|price_convert}}</span></span></a></p>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div class="tabsa">
+                <div class="tabsa_style">
+                    <ul class="tabsa__caption">
+                        {% for product in products%}
+                        {% if forloop.first %}
+                        <li class="active">{{product.name}}</li>
+                        {%else%}
+                        <li>{{product.name}}</li>
+                        {%endif%}
+                        {%endfor%}
+                    </ul>
+                </div>
+                {% for product in products%}
+                {% if forloop.first %}
+                <div class="tabsa__content active">
+                    {% else %}
+                    <div class="tabsa__content">
+                        {%endif%}
+
+                        <div id="product" class="grid_12">
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-5">
+                                    <div id="product_images" class="grid_6 alpha">
+                                        <a id="product_image_preview" rel="prettyPhoto[gallery]" href="../../../media/{{ product.image }}"><img id="image" src="../../../media/{{ product.image }}" title="{{ product.name }}" alt="{{ product.name }}" width="300px"></a>
+                                    </div>
+                                </div>
+
+                                <div id="product_info" class="grid_6 omega">
+                                    <div class="col-md-5">
+
+                                        <dl class="clearfix">
+                                            <dt>В наличии</dt>
+                                            <dd>{{product.stock}}</dd>
+                                            <dt>{{prop_list.0}}</dt>
+                                            <dd>{{product.property_1}}</dd>
+                                            <dt>{{prop_list.1}}</dt>
+                                            <dd>{{product.property_2}}</dd>
+                                            <dt>{{prop_list.2}}</dt>
+                                            <dd>{{product.property_3}}</dd>
+                                            <dt>{{prop_list.3}}</dt>
+                                            <dd>{{product.property_4}}</dd>
+                                            <dt>{{prop_list.4}}</dt>
+                                            <dd>{{product.property_5}}</dd>
+                                            <dt>{{prop_list.5}}</dt>
+                                            <dd>{{product.property_6}}</dd>
+                                        </dl>
+
+                                    </div>
+                                    <div class="col_md-2">
+                                        <p class="s_price ">
+                                            {{ product.price|price_convert }}<span class="s_currency s_after">cум</span>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="product_buy" class="clearfix">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="reliz_buttoms">
+
+                                                <form class="dat_form" action="{% url 'cart:CartAdd' product.maincategory.slug product.slug %}" method="post" >
+                                                    {{ cart_product_form }}
+                                                    {% csrf_token %}
+                                                    <input type="submit" class="btn s_main_color_bgr inst btn-lg" value="Добавить в корзину">
+                                                </form>
+
+                                                <a class="btn s_main_color_bgr add_to_cart_but btn-lg" href="{% url 'cart:VersusAdd' product.maincategory.slug product.slug %}">
+                                                    <span class="s_text"><i class="fa fa-balance-scale" aria-hidden="true"></i> Добавить в cравнение</span></a>
+                                                {%if product.maincategory.name != "Ноутбуки"%}
+                                                <a class="btn s_main_color_bgr add_to_cart_but btn-lg" href="{% url 'cart:CraftAdd' product.maincategory.slug product.category.slug product.slug %}">
+                                                    <span class="s_text"> {%if product.maincategory.name == "Компьютеры" %} <i class="fa fa-microchip" aria-hidden="true"></i>   Пресобрать  {%else%} <i class="fa fa-microchip" aria-hidden="true"></i>    Добавить в сборку {%endif%}</span></a>
+                                                {%endif%}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  <dt>Average Rating</dt>
+                                  <dd>
+                                    <p class="s_rating s_rating_5"><span style="width: 100%;" class="s_percent"></span></p>
+                                  </dd>
+                                </dl>
+                                <div id="product_share" class="clearfix"> -->
+                            </div>
+                            <!-- AddThis Button BEGIN -
+                            <div class="addthis_toolbox addthis_default_style ">
+                            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                            <a class="addthis_button_tweet"></a>
+                            <a class="addthis_counter addthis_pill_style"></a>
+                            </div>
+                            <script type="text/javascript" src="a"></script>
+                             AddThis Button END -->
+                            {%if product.maincategory.name == "Компьютеры" %}
+                            <div id="product_options">
+                                <!--<h3>Available Options</h3>
+                                <label for="option_Memory">Memory</label>
+                                <select id="option_Memory">
+                                  <option value="676">1 GB +29.38<span class="s_currency s_after"> eur</span> </option>
+                                  <option value="677">2 GB +47.00<span class="s_currency s_after"> eur</span> </option>
+                                </select> -->
+
+                                <span class="clear border_ddd"></span>
+                                <p>
+                                    <label >Процессор:</label><a href="{{product.property_1.get_absolute_url}}"><input type="text" readonly value="{{product.property_1}}" size="50"></a>
+                                    <label>Оперативная память:</label> <a href="{{product.property_2.get_absolute_url}}"><input type="text" readonly value="{{product.property_2}}" size="50"></a>
+                                    <label>Видеокарта:</label><a href="{{product.property_3.get_absolute_url}}"><input type="text" readonly value="{{product.property_3}}" size="50"></a>
+                                    <label>Память:</label><a href="{{product.property_4.get_absolute_url}}"><input type="text" readonly value="{{product.property_4}}" size="50"></a>
+                                    <label>Материнская плата:</label><a href="{{product.property_5.get_absolute_url}}"><input type="text" readonly value="{{product.property_5}}" size="50"></a>
+                                    <label>Блок питания/Кейс:</label><a href="{{product.property_6.get_absolute_url}}"><input type="text" readonly value="{{product.property_6}}" size="50"></a>
+                                    <label>Блок питания/Кейс:</label><a href="{{product.property_7.get_absolute_url}}"><input type="text" readonly value="{{product.property_7}}" size="50"></a>
+                                    <label>Система охлождения:</label><a href="{{product.property_8.get_absolute_url}}"><input type="text" readonly value="{{product.property_8}}" size="50"></a>
+                                    <label>Привод:</label><a href="{{product.property_9.get_absolute_url}}"><input type="text" readonly value="{{product.property_9}}" size="50"></a>
+                                </p>
+                                <span class="clear border_ddd"></span>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="tablici">
+                                <h1>Список переферии</h1>
+                                <table class="s_table" width="100%">
+                                    <tr><th>Тип Устройства</th><th>Производитель</th><th>Модель</th><th>Цена</th></tr>
+                                    {%for perf_item in product.perf_list.all%}
+                                    <tr><td class="align_center"><a href="/{{perf_item.category.slug}}">{{perf_item.category.name}}</a></td><td class="align_center">{{perf_item.property_1}}</td><td class="align_center"><a href="{{perf_item.get_absolute_url}}">{{perf_item.name}}</a></td><td class="align_center"> {{perf_item.price|price_convert}} сум</td></tr>
+                                    {%endfor%}
+                                    <tr>
+                                        <td class="align_left" colspan="3" > <strong>Общая стоимость переферии</strong></td>
+                                        <td class="align_center"><strong>{{product.get_perf_price|price_convert}} сум</strong></td>
+                                    </tr>
+                                </table>
+                                <span class="clear border_ddd"></span>
+                                <h1>Список Аксесуаров</h1>
+                                <table class="s_table" width="100%">
+                                    <tr><th>Тип Устройства</th><th>Подключение</th><th>Назначение</th><th>Цена</th></tr>
+                                    {%for acses_item in product.acses_list.all%}
+                                    <tr><td class="align_center"><a href="/{{acses_item.category.slug}}">{{acses_item.category.name}}</a></td><td class="align_center">{{acses_item.property_1}}</td><td class="align_center"><a href="{{acses_item.get_absolute_url}}">{{acses_item.name}}</a></td><td class="align_center"> {{acses_item.price|price_convert}} сум</td></tr>
+                                    {%endfor%}
+                                    <tr>
+                                        <td class="align_left" colspan="3" > <strong>Общая стоимость Аксесуаров</strong></td>
+                                        <td class="align_center"><strong>{{product.get_acses_price|price_convert}} сум</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            {%endif%}
+
+
+
+                            <div class="clear"></div>
+                            <div class="s_tabs grid_12 alpha omega">
+                                <ul class="s_tabs_nav clearfix">
+                                    <li><a href="#product_description">Описание</a></li>
+                                    <li><a href="#product_reviews">Отзывы</a></li>
+                                    <li><a href="#product_gallery">Фото</a></li>
+                                    <li><a href="#product_details">Подробно</a></li>
+                                </ul>
+                                <div class="s_tab_box">
+                                    <div id="product_description">
+                                        <div class="cpt_product_description ">
+                                            {%if product.maincategory.name == "Компьютеры" %}
+                                            <p><b>CPU (Процессор) </b><br/>
+                                                {{product.property_1.name}}<br/>
+                                                {{product.property_1.property_1}}, {{product.property_1.property_2}}, {{product.property_1.property_3}}, {{product.property_1.property_4}}, {{product.property_1.property_5}}</p>
+                                            <p><b>RAM (Оперативная память) </b><br/>
+                                                {{product.property_2.name}}<br/>
+                                                {{product.property_2.property_1}}, {{product.property_2.property_2}}, {{product.property_2.property_3}}, {{product.property_2.property_4}}, {{product.property_2.property_5}}</p>
+                                            <p><b>Видеокарта </b><br/>
+                                                {{product.property_3.name}}<br/>
+                                                {{product.property_3.property_1}}, {{product.property_3.property_2}}, {{product.property_3.property_3}}, {{product.property_3.property_4}}, {{product.property_3.property_5}}</p>
+                                            <p><b>Память </b><br/>
+                                                {{product.property_4.name}}<br/>
+                                                {{product.property_4.property_1}}, {{product.property_4.property_2}}, {{product.property_4.property_3}}, {{product.property_4.property_4}}, {{product.property_4.property_5}}</p>
+                                            <p><b>Материнская плата </b><br/>
+                                                {{product.property_5.name}}<br/>
+                                                {{product.property_5.property_1}}, {{product.property_5.property_2}}, {{product.property_5.property_3}}, {{product.property_5.property_4}}, {{product.property_5.property_5}}</p>
+                                            <p><b>Блок питания/Кейс </b><br/>
+                                                {{product.property_6.name}}<br/>
+                                                {{product.property_6.property_1}}, {{product.property_6.property_2}}, {{product.property_6.property_3}}, {{product.property_6.property_4}}, {{product.property_6.property_5}}</p>
+                                            <p><b>Блок питания/Кейс </b><br/>
+                                                {{product.property_7.name}}<br/>
+                                                {{product.property_7.property_1}}, {{product.property_7.property_2}}, {{product.property_7.property_3}}, {{product.property_7.property_4}}, {{product.property_7.property_5}}</p>
+                                            <p><b>Система охлождения </b><br/>
+                                                {{product.property_8.name}}<br/>
+                                                {{product.property_8.property_1}}, {{product.property_8.property_2}}, {{product.property_8.property_3}}, {{product.property_8.property_4}}, {{product.property_8.property_5}}</p>
+                                            <p><b>Привод </b><br/>
+                                                {{product.property_9.name}}<br/>
+                                                {{product.property_9.property_1}}, {{product.property_9.property_2}}, {{product.property_9.property_3}}, {{product.property_9.property_4}}, {{product.property_9.property_5}}</p>
+
+                                            {%else%}
+                                            {% autoescape off %} {{ product.description }} {%endautoescape%}
+                                            {%endif%}
+                                        </div>
+                                        <!-- cpt_container_end -->
+                                    </div>
+
+                                    <div id="product_reviews" class="s_listing">
+                                        {% for coment in coments %}
+
+                                        <div class="s_review last">
+                                            <p class="s_author"><strong>{{coment.author}}</strong><small>({{coment.created}})</small></p>
+                                            <div class="right">
+                                                <div class="s_rating_holder">
+                                                    <p class="s_rating s_rating_5"><span class="s_percent" style="width: {{coment.ocenka}}%;"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <p>
+                                                {{coment.review}}
+                                            </p>
+
+                                        </div>
+                                            {%endfor%}
+                                        <h2 class="s_title_1"><span class="s_main_color">Оставьте</span> Отзыв</h2>
+                                        <form id="review_form{{forloop.counter}}" method="post">
+                                            <div id="review_title" class="clear"></div>
+                                            <div class="s_row_3 clearfix">
+                                                <label><strong>Ваше имя:</strong></label>
+                                                {{form.author}}
+                                            </div>
+                                            <div class="s_row_3 clearfix">
+                                                <label><strong>Ваш отзыв:</strong></label>
+                                              {{form.review}}
+                                            </div>
+
+
+                                            <div class="s_row_3 clearfix">
+                                                <label><strong>Оценка</strong></label>
+                                                {{form.ocenka}}
+                                            </div>
+                                            {%csrf_token%}
+                                            <div class="g-recaptcha" data-sitekey="6LcirzoUAAAAAI7H7yxXK5kStYcZdPiVA3XVf34z"></div>
+                                        </form>
+
+                                        <span class="clear border_ddd"></span>
+                                        <a id="send_rev_{{forloop.counter}}" class="s_button_1 s_main_color_bgr "><span class="s_text">Оставить отзыв</span></a> <span class="clear"></span>
+                                    </div>
+                                        <script type="text/javascript">
+                                        $("#send_rev_{{forloop.counter}}").click(function() {
+                                            document.getElementById('review_form{{forloop.counter}}').submit();;
+                                            });
+                                        </script>
+                                    <div id="product_gallery">
+                                        <ul class="s_thumbs clearfix">
+                                            {%for img in hub.image_array.all%}
+                                            <li><a class="s_thumb" data-lightbox="imagegroup" href="../../../media/{{img.image}}"  title="{{ product.name }}"><img src="../../../media/{{img.image}}" width="120" title="{{ product.name }}" alt="{{ product.name }}" /></a></li>
+                                            {%endfor%}
+                                        </ul>
+
+                                    </div>
+
+                                    <div id="product_details">
+                                        <div class="cpt_product_description ">
+
+                                            {% autoescape off %} ЗДЕСЬ БУДЕТ ПОДРОБНО {%endautoescape%}
+
+                                        </div>
+                                        <!-- cpt_container_end -->
+                                    </div>
+                                </div>
+
+
+
+                                <!--    <div id="product_tags" class="grid_12 alpha omega">
+                                         <h2 class="s_title_1"><span class="s_main_color">Product</span> Tags</h2>
+                                         <div class="clear"></div>
+                                         <ul class="clearfix">
+                                             <li><a href="#">Centrino</a></li>
+                                             <li><a href="#">Intel</a></li>
+                                             <li><a href="#">VAIO</a></li>
+                                             <li><a href="#">laptop</a></li>
+                                             <li><a href="#">notebook</a></li>
+                                         </ul>
+                                     </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of content -->
+    <script>
+            (function($) {
+$(function() {
+
+   $('ul.tabsa__caption').on('click', 'li:not(.active)', function() {
+    $(this)
+      .addClass('active').siblings().removeClass('active')
+      .closest('div.tabsa').find('div.tabsa__content').fadeOut(500).removeClass('active').eq($(this).index()).delay(600).fadeIn(500).addClass('active');
+    });
+
+
+
+     $(".s_tabs").tabs({ fx: { opacity: 'toggle', duration: 300 } });
+     $("#product_gallery a").lightBox();
+
+});
+})(jQuery);
+
+        </script>
+
+
+
+
+
+    {% endblock %}

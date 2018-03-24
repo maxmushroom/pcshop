@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+ {% load filters %}
+{% block content %}
+  
+
+  <!-- ********************** --> 
+  <!--     I N T R O          -->
+  <!-- ********************** --> 
+
+  <div id="intro_2">
+    <div id="intro_wrap">
+      <div class="container">
+       <div class="row">
+         <div class="col-md-12">
+      <div class="container_12">
+        <div id="breadcrumbs" class="grid_12">
+          <a href="/">Магазин</a>
+          &gt;
+          <a href="/{{products.0.maincategory.slug}}">{{products.0.maincategory.name}}</a>
+          &gt;
+          <a href="/{{products.0.category.slug}}">{{products.0.category.name}}</a>
+        </div>
+        <h1>{{products.0.category.name}}</h1>
+      </div>
+    </div>
+  </div>
+  </div>
+    </div>
+    </div>
+  <!-- end of intro -->
+
+  
+  <!-- ********************** --> 
+  <!--      C O N T E N T     -->
+  <!-- ********************** -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="container_16">
+        <div class="col-md-3 col-sm-12">
+         <div id="right_col" class="grid_4">
+         {% include 'cart_col.html'%}
+         {% include 'filter_col.html'%}
+         </div>
+         </div>
+      </div>
+        <div class="col-md-9 col-sm-12">
+    <div id="category" class="grid_12">
+    <!--
+      <div class="s_subcategories s_grid_view s_listing clearfix">
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="Digital Cameras" alt="Digital Cameras" style="margin-bottom: 3px;" /></a> <a href="">Digital Cameras</a> </div>
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="Home Audio" alt="Home Audio" style="margin-bottom: 3px;" /></a> <a href="">Home Audio</a> </div>
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="Home Cinema" alt="Home Cinema" style="margin-bottom: 3px;" /></a> <a href="">Home Cinema</a> </div>
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="Cell Phones" alt="Cell Phones" style="margin-bottom: 3px;" /></a> <a href="">Cell Phones</a> </div>
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="MP3 Players" alt="MP3 Players" style="margin-bottom: 3px;" /></a> <a href="">MP3 Players</a> </div>
+        <div class="s_subcategory"> <a href=""><img src="images/category_100x100.jpg" title="Car-Audio" alt="Car-Audio" style="margin-bottom: 3px;" /></a> <a href="">Car-Audio</a> </div>
+        <div class="clear"></div>
+      </div>
+       -->
+      <div id="listing_options">
+        <div id="listing_sort" class="s_switcher">
+          <span class="s_selected">Отсортировать</span>
+          <ul class="s_options" style="display: none;">
+            <li><a href="?sort=1">Названия A - Z</a></li>
+            <li><a href="">Name Z - A</a></li>
+            <li><a href="">Price Low &gt; High</a></li>
+            <li><a href="">Price High &gt; Low</a></li>
+            <li><a href="">Rating Highest</a></li>
+            <li><a href="">Rating Lowest</a></li>
+            <li><a href="">Model A - Z</a></li>
+            <li><a href="">Model Z - A</a></li>
+          </ul>
+        </div>
+        <div id="view_mode" class="s_nav">
+          <ul class="clearfix">
+            <li id="view_grid"><a href="?chos=True"><span class="s_icon"></span>Сеткой</a></li>
+            <li id="view_list" class="s_selected"><a href="?chos=False"><span class="s_icon"></span>Списком</a></li>
+            <form method="GET">{{form.chos.as_p}}</form>
+          </ul>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="s_listing s_list_view clearfix">
+        {% for product in products %}
+        <div class="s_item clearfix">
+          <div class="col-xs-3">
+          <div class="grid_3 alpha"> <a class="s_thumb" href="{{ product.get_absolute_url }}"><img src="{% if product.image %}{{ product.image.url }}{% else %}{% endif %}" class="img-responsive" title="{{ product.name }}"  /></a> </div>
+          </div>
+          <div class="grid_9 omega">
+          <div class="col-xs-8">
+
+            <h3><a href="{{ product.get_absolute_url }}">{{ product.category }} {{ product.name }}</a></h3>
+            <p class="s_model">{{product.property_1}}</p>
+
+            <p class="s_description"> {% autoescape off %}{{ product.description|truncatechars_html:200 }} {% endautoescape %}</p>
+            <a class="s_button_add_to_cart" href="{% url 'cart:CartAdd' product.maincategory.slug product.slug %}"><span class="s_icon_16"><span class="s_icon"></span>Добавить в корзину</span></a>
+            </div>
+
+          <div class="col-xs-1">
+          <p class="s_price">{{ product.price|price_convert }}<span class="s_currency s_before"><br/>сум</span></p>
+          </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        {% endfor %}
+      </div>
+      
+      <div class="pagination">
+        <div class="results">Showing 1 to 6 of 6 (1 Pages)</div>
+      </div>
+      
+    </div>
+    
+
+
+    <!--  <div id="featured_side" class="s_box clearfix">
+        <h2>Featured</h2>
+        <div class="s_item s_size_1 clearfix">
+          <a class="s_thumb" href="product.html"><img src="images/dummy/pic_8.jpg" width="38" height="38" alt="White football trainers" /></a>
+          <h3><a href="product.html">White football trainers</a></h3>
+          <p><a href="product.html"><span class="s_main_color"><span class="s_currency s_before">£</span>117.50</span></a></p>
+        </div>
+      </div>
+    -->
+    </div>
+    </div>
+    </div>
+
+
+  <!-- end of content -->
+  
+  
+  
+{% endblock %}

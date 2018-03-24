@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=UTF-8">
+    <title>Catalog</title>
+</head>
+<body>
+    <style>
+    .wrapper{
+        width: 1000px;
+        margin: 0 auto;
+    }
+    .wrapper .header{
+        width: 100%;
+        height: 40px;
+        background: #eee;
+    }
+    .wrapper .body{
+        width: 100%;
+        min-height: 600px;
+        background: #ccc;
+        font-size: 0;
+    }
+    .wrapper .body .item{
+        width: 600px;
+        min-height: 300px;
+        margin: 0 auto;
+        background: #eee;
+    }
+    .wrapper .body .item .price{
+        margin-top: 5px;
+        display: block;
+        font-size: 14px;
+        color:#000;
+    }
+    .wrapper .body .item .buy{
+        margin-top: 5px;
+        display: block;
+        font-size: 14px;
+        color:#000;
+    }
+    .wrapper .body .item .full{
+        max-width: 600px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    </style>
+    <div class="wrapper">
+        <div class="header"><h1>{{tovar.name}}</h1></div>
+        <div class="body">
+            <div class="item">
+                <img class="full" src="{{tovar.image}}" alt="">
+                <span class="price">{{tovar.price}} Р</span>
+                <a href="#" class="buy">Купить</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

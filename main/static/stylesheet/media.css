@@ -1,0 +1,198 @@
+/*==========  Desktop First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+    #product_intro .s_price_holder {
+    right: 0px !important;
+    margin-right: 20%;
+    bottom: -100px !important;
+    top: 250px;
+    }
+    #product_intro_preview {
+     margin-left: auto !important;
+     margin-right: auto;
+     right: 0%;
+    }
+    #intro{
+    height:700px;
+    }
+
+
+    .add_to_cart_but {
+           width: 100%;
+    display: inline-block;
+    float: right;
+    left: 10px;
+    margin-top: 10px;
+    }
+    .dat_form {
+        width:100%;
+    }
+    .inst {
+        width: 100%;
+        float: right !important;
+        background-position-x: 37%;
+
+    }
+    .bra {
+        display: none;
+    }
+    #product_buy label {
+       margin-left: 3%;
+       display: none;
+    }
+
+    #cart_menu small.s_text {
+        display: none;
+    }
+    #cart_menu_2 small.s_text {
+        display: none;
+    }
+    #cart_menu_3 small.s_text {
+        display: none;
+    }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+     .s_list_1_1{
+	 display:none;
+	 }
+
+	 #carting {
+
+	 margin: 15px auto;
+     float: right;
+     left:33px;
+     top:15px;
+
+    }
+     .mobi_descrip {
+        display: inline-block;
+    }
+    .container_12 .grid_2.s_item .s_price {
+     right: 14px;
+     top: 40px;
+     }
+     .container_12 .grid_2.s_item:hover .s_price {
+     right: 14px;
+     top: 40px;
+    }
+    #cart_side{
+        display:none
+    }
+
+
+
+    #system_navigation {
+	 display: none;
+	 }
+
+    .menu-button {
+    display: inline-block;
+    }
+    .navig{
+    	 display: none;
+    }
+
+    #cart_menu small.s_text {
+        display: inline-block;
+    }
+    #cart_menu_2 small.s_text {
+        display: inline-block;
+    }
+    #cart_menu_3 small.s_text {
+        display: inline-block;
+    }
+
+
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+
+
+    #add_to_cart .s_icon {
+    left:20%;
+    }
+    #add_to_cart_2 .s_icon {
+    left:20%;
+    }
+    #carting {
+    left:6%;
+    }
+    .s_nav  {
+		display: block ;
+	}
+
+    #menu_home, #menu_home a {
+    left: 45%;
+    position: relative;
+
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+    #menu_home, #menu_home a {
+    left: 42%;
+    position: relative;
+    }
+
+
+    #cart_menu small.s_text {
+        display: none;
+    }
+    #cart_menu_2 small.s_text {
+        display: none;
+    }
+    #cart_menu_3 small.s_text {
+        display: none;
+    }
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+     #menu_home, #menu_home a {
+    left: 38%;
+    position: relative;
+    }
+}
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+     .s_list_1_1{
+	 display:block !important;
+	 }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% load filters %}
+{% block content %}
+
+  <!-- ********************** --> 
+  <!--     I N T R O          -->
+  <!-- ********************** --> 
+  <div id="intro_2">
+    <div id="intro_wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+      <div class="container_12">
+        <div id="breadcrumbs" class="grid_12">
+          <a href="/">Магазин</a>
+           &gt; <a href="/cart">Сравнение</a>
+        </div>
+        <h1>Сравнение</h1>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+   </div>
+  <!-- end of intro -->
+
+
+  <!-- ********************** --> 
+  <!--      C O N T E N T     --> 
+  <!-- ********************** -->
+<div class="container">
+        <div class="row">
+          <div class="col-md-12">
+  <div id="content" class="container_12">
+
+    <div id="shopping_cart" class="grid_12">
+        <table class="s_table_1" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <th width="20%">Свойство</th>
+            {% for product in versus%}
+            <th width="20%"><a href="{{product.get_absolute_url}}">{{product.name}}</a> <a href="{% url 'cart:VersusRemove' product.slug %}"><i class="fa fa-times" aria-hidden="true"></i></a></th>
+            {%endfor%}
+           <tr>
+              <tr class="even">
+              <td class="s_table_left_th" valign="middle">Фото</td>
+            {% for product in versus%}
+             <td valign="middle"><a href="{{product.get_absolute_url}}"><img class="s_table_1_img" src="{{product.image.url}}" height="60px" alt="{{product.name}}" /></a></td>
+            {%endfor%}
+            </tr>
+              {% for prop in vs%}
+              <tr class="even">
+                <td class="s_table_left_th" valign="middle">{{prop}}</td>
+                {% for product in versus%}
+                <td valign="middle">{{product|vers_prop:forloop.parentloop.counter}}</td>
+                {%endfor%}
+            {%endfor%}
+              </tr>
+            <tr>
+              <td class="s_table_left_th" valign="middle">Цена</td>
+            {% for product in versus%}
+              <td valign="middle">{{product.price|price_convert}} сум</td>
+            {%endfor%}
+          </tr>
+
+
+        </table>
+
+        <div class="clear"></div>
+        <br />
+
+
+    </div>
+   </div>
+    <div class="clear"></div>
+    <br />
+    <br />
+    
+  </div>
+      </div> </div>
+  <!-- end of content -->
+{% endblock %}
