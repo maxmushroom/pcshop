@@ -7,7 +7,6 @@ from .decorators import check_recaptcha
 
 urlpatterns = [
     url(r'^$', views.main, name='main'),
-   #url(r'^', include('main.urls', namespace='main')),
     url(r'^(?P<category_slug>[-\w]+)/$', views.NotebookSList, name='NotebookSListByCategory'),
     url(r'^(?P<big_category_slug>[-\w]+)/(?P<category_slug>[-\w]+)/(?P<slug>[-\w]+)/$', check_recaptcha(views.ProductDetail), name='ProductDetail')
 ]

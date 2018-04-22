@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{% static 'js/shoppica.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery/lightbox.js' %}"></script>
-    <meta name="description" content="My Store" />
+    <meta name="description" content="Компьюетры и ноутбуки" />
      <link rel="stylesheet" type="text/css" href="{% static 'stylesheet/lightbox.css' %}" media="screen" />
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheet/screen.css' %}" media="screen" />
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheet/color.css' %}" media="screen" />
@@ -115,12 +115,8 @@ $(document).ready(function() {
                             <a id="show_search" href="javascript:;" title="Search:"></a>
                             <div id="search_bar" class="clearfix">
                                 <input type="text" id="filter_keyword" />
-                                <select id="filter_category_id">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 1</option>
-                                    <option value="2">Category 2</option>
-                                </select>
-                                <a class="s_button_1 s_secondary_color_bgr"><span class="s_text">Go</span></a> <a class="s_advanced s_main_color" href="">Advanced Search</a>
+
+                                <a class="s_button_1 s_secondary_color_bgr"><span class="s_text">Поиск</span></a>
                             </div>
                         </div>
                     </div>
@@ -131,10 +127,9 @@ $(document).ready(function() {
                         <div id="system_navigation" class="s_nav">
                             <ul class="s_list_1 clearfix">
                                 <li><a href="/">Главная</a></li>
-                                <li><a href="login.html">Войти</a></li>
-                                <li><a href="cart.html">Корзина/Сборка</a></li>
-                                <li><a href="static.html">О нас</a></li>
-                                <li><a href="contacts.html">Контакты</a></li>
+                                <li><a href="/cart/craft">Сборка</a></li>
+                                <li><a href="/cart/versus">Сравнение</a></li>
+                                <li><a href="/about_us">О нас</a></li>
                             </ul>
                         </div>
                     </div>
@@ -255,9 +250,8 @@ $(document).ready(function() {
                                             {% with total_items=cart|length %}
                                             {% if cart|length > 0 %}
                                             Ваша корзина:
-                                            <a href="{% url 'cart:CartDetail' %}">
                                         <p>{{ total_items }} тов. {{ cart.get_total_price|price_convert }} сум</p>
-                                        <table cellpadding="8px", cellspacing="8px">
+                                        <table cellpadding="8px" cellspacing="8px">
                                             <tr><td>Фирма</td><td>Наименование</td><td>Количество</td><td>Цена</td></tr>
                                             {% for item in cart %}
                                             {% with product=item.product %}
@@ -293,8 +287,7 @@ $(document).ready(function() {
                         <div class="col-md-3">
                             <div id="shop_description" class="grid_3">
                                 <h2><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> PCShop</h2>
-                                <p>Вы сможете найти наши магазины по адрессу такомуто
-                                    такомуто на палике там-то там то вообще несколько магазов ок да? Главый оффис будет тамто тамто</p>
+                                <p>Торговые ряды "Малика" Б-Блок, 31-магазин</p>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -302,13 +295,13 @@ $(document).ready(function() {
                                 <h2><i class="fa fa-envelope" aria-hidden="true"></i> Свяжитесь с нами!</h2>
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                     <tr>
-                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_phone_32"></span>5234452 <br /></span></td>
+                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_phone_32"></span>+99894 677 79 88 <br /></span></td>
                                     </tr>
                                     <tr>
-                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_fax_32"></span>5234452 <br /></span></td>
+                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_phone_32"></span>+99897 765 33 99 <br />Для корпоративных клиентов  <br /></span></td>
                                     </tr>
                                     <tr>
-                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_mail_32"></span>pinko@example.com <br /> pinko@example.com</span></td>
+                                        <td valign="middle"><span class="s_icon_32"><span class="s_icon s_mail_32"></span>info@pcshop.uz</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -317,6 +310,7 @@ $(document).ready(function() {
                             <div id="twitter" class="grid_3">
                                 <h2><i class="fa fa-telegram" aria-hidden="true"></i> Telegram</h2>
                                 <ul id="twitter_update_list"><li></li></ul>
+                                <a href="https://t.me/ingameuz_chat">Чат группа Ingame</a>
                                 <script type="text/javascript" src=""></script>
                                 <script type="text/javascript" src=""></script>
                             </div>
@@ -325,6 +319,7 @@ $(document).ready(function() {
                             <div id="facebook" class="grid_3">
                                 <h2><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</h2>
                                 <div class="s_widget_holder">
+                                    facebook.com/pcshop.uz
                                     <fb:fan profileid="111188056908" stream="0" connections="6" logobar="0" width="220" css=""></fb:fan>
                                 </div>
                             </div>
@@ -353,7 +348,7 @@ $(document).ready(function() {
                         <li><a href="/gaminglaptop">Игровые ноутбуки</a></li>
                         <li><a href="/2in1">2в1 Трансформеры</a></li>
                         <li><a href="/planshety">Планшеты</a></li>
-                        <li><a href="/note-bu">Рестоврация, Б/У</a></li> </a></li>
+                        <li><a href="/note-bu">Рестоврация, Б/У</a></li>
                     </ul>
                 </div>
                 </div>
@@ -420,7 +415,6 @@ $(document).ready(function() {
                 <div class="clear"></div>
                 <div class="grid_12 border_eee"></div>
             </div>
-            <p id="copy">&copy; Copyright 2011. Powered by <a class="blue" href="">Open Cart</a>.<br /> <a class="s_main_color" href="http://www.shoppica.net">Shoppica theme</a> made by <a href="http://www.themeburn.com">ThemeBurn.com</a></p>
         </div>
          </div>
           </div>

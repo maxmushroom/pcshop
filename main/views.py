@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 def NotebookSList(request, category_slug):
 
 # < !!! БЛОК ВЫБОРКИ ТОВАРОВ
-    prop_list=['Свойство 1','Свойство 2','Свойство 3','Свойство 4']
+    prop_list=[]
     if category_slug =='notebooks':
         products = Notebook.objects.all()
         title = 'Ноутбуки - PCShop.uz'
@@ -51,8 +51,8 @@ def NotebookSList(request, category_slug):
 # КОНЕЦ БЛОКА ВЫБОРКИ ТОВАРОВ !!!!!>
     cart_product_form = CartAddProductForm()
 # < !!! БЛОК ФОРМЫ ФИЛЬТРАЦИИ
-    min_price = products.order_by('price').first()
-    max_price =  products.order_by('price').last()
+    min_price = products.order_by('price').first().price
+    max_price =  products.order_by('price').last().price
     p_1 = []
     p_2 = []
     p_3 = []
@@ -373,7 +373,8 @@ def main(request):
 
 
 
-
+def about_us(request):
+    return render(request,'contacts.html',{'title':'О нас - PCshop.uz'})
      #obj, created = ProductStat.objects.get_or_create(
      #       defaults={
      #           "product": product,

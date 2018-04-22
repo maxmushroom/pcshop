@@ -9,7 +9,7 @@
                 {% with product=item %}
                     <div class="s_cart_item">
                     <a id="hremove_95" class="s_button_remove" href="{% url 'cart:CartRemove' product.slug %}">&nbsp;</a>
-                        <span class="block"> x{{item.quantity}} <a href="{{product.get_absolute_url}}"> <b>{{product.property_1}} {{product.name}}</b> </a></span>
+                        <span class="block"> x{{item.quantity}} <a href="{{product.get_absolute_url}}"> <b>{{item.property_1}} {{product.name}}</b> </a></span>
                     </div>
                 {% endwith %}
               {% endfor %}

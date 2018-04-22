@@ -17,9 +17,9 @@
             <div class="high-item">
             <h2><a href="{{shake.0.get_absolute_url}}">{{shake.0.name}}</a></h2>
 
-            <div class="s_rating_holder">
+         <!--   <div class="s_rating_holder">
               <p class="s_rating s_rating_big s_rating_5"> <span style="width: 60%;" class="s_percent"></span> </p>
-              <span class="s_average">3 out of 5</span> </div>
+              <span class="s_average">3 out of 5</span> </div> -->
 
             <p class="s_desc"> {% autoescape off %}{{ shake.0.description|truncatechars_html:600 }} {% endautoescape %}  </p>
 
@@ -52,23 +52,23 @@
           </div>
           <div style="position: relative; display: none;">
              <div class="high-item">
-            <h2><a href="{{shake.1.get_absolute_url}}">{{shake.1.name}}</a></h2>
+            <h2><a href="{{shake.3.get_absolute_url}}">{{shake.3.name}}</a></h2>
 
-            <p class="s_desc"> {% autoescape off %}{{ shake.1.description|truncatechars_html:600 }} {% endautoescape %} </p>
+            <p class="s_desc"> {% autoescape off %}{{ shake.3.description|truncatechars_html:600 }} {% endautoescape %} </p>
 
                 <div class="s_price_holder">
-              <p class="s_price"> <span class="s_currency s_before">{{shake.1.price|price_convert}}</span>сум </p>
+              <p class="s_price"> <span class="s_currency s_before">{{shake.3.price|price_convert}}</span>сум </p>
                 </div>
                 </div>
           </div>
           <div style="position: relative; display: none;">
              <div class="high-item">
-            <h2><a href="{{shake.2.get_absolute_url}}">{{shake.2.name}}</a></h2>
+            <h2><a href="{{shake.4.get_absolute_url}}">{{shake.4.name}}</a></h2>
 
-            <p class="s_desc"> {% autoescape off %}{{ shake.2.description|truncatechars_html:600 }} {% endautoescape %} </p>
+            <p class="s_desc"> {% autoescape off %}{{ shake.4.description|truncatechars_html:600 }} {% endautoescape %} </p>
 
                 <div class="s_price_holder">
-              <p class="s_price"> <span class="s_currency s_before">{{shake.2.price|price_convert}}</span> сум</p>
+              <p class="s_price"> <span class="s_currency s_before">{{shake.4.price|price_convert}}</span> сум</p>
                 </div>
                 </div>
             </div>
@@ -79,15 +79,15 @@
         <div id="product_intro_preview">
           <div class="slides_container">
 
-              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.0.image}}"  width="300px" max-height="300px"  alt="" /></a></div>
+              <div class="slideItem" style="display: none"><a href="{{shake.0.get_absolute_url}}"><img src="media/{{shake.0.image}}"  width="300px" max-height="300px"  alt="" /></a></div>
 
-              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.1.image}}" width="300px" max-height="300px" alt=""  /></a></div>
+              <div class="slideItem" style="display: none"><a href="{{shake.1.get_absolute_url}}"><img src="media/{{shake.1.image}}" width="300px" max-height="300px" alt=""  /></a></div>
 
-              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.2.image}}" width="300px" max-height="300px" alt="" /></a></div>
+              <div class="slideItem" style="display: none"><a href="{{shake.2.get_absolute_url}}"><img src="media/{{shake.2.image}}" width="300px" max-height="300px" alt="" /></a></div>
 
-              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.1.image}}" width="300px" max-height="300px" alt="" /></a></div>
+              <div class="slideItem" style="display: none"><a href="{{shake.3.get_absolute_url}}"><img src="media/{{shake.3.image}}" width="300px" max-height="300px" alt="" /></a></div>
 
-              <div class="slideItem" style="display: none"><a href="product.html"><img src="media/{{shake.2.image}}" width="300px" max-height="300px" alt="" /></a></div>
+              <div class="slideItem" style="display: none"><a href="{{shake.4.get_absolute_url}}"><img src="media/{{shake.4.image}}" width="300px" max-height="300px" alt="" /></a></div>
 
 
 
@@ -119,7 +119,7 @@
         <div class="col-md-12">
           <div id="welcome">
           <h2>PCshop.uz</h2>
-          <p>Это магазин бла бла бла бла бла и еще много разгоного текста короче<br/>
+          <p>С 1998 года PCShop group осуществляет реализацию продукции ведущих производителей, а также сборку персональных компьютеров, графических станций и серверов. За это время мы завоевали доверие более 100 корпоративных клиентов, собрали более 2000 компьютеров, а также создали солидную клиентскую базу. <br/>
           </p>
         </div>
        </div>

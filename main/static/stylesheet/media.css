@@ -134,6 +134,10 @@
     position: relative;
 
     }
+    #search_bar {
+    display:none;
+    }
+
 }
 
 /* Extra Small Devices, Phones */

@@ -9,7 +9,7 @@
   padding: 0;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
 }
-body, select, input, textarea, button {font-size: 13px; color: #333;}
+body, select, input, textarea, button {font-size: 1.4rem!important; color: #333;}
 body {line-height: 18px}
 :-moz-any-link:active, a:active, a:focus, input, textarea, button {outline:none;}
 ul {list-style: none;}
@@ -1519,8 +1519,8 @@ body.s_layout_fixed #wrapper {
   position: absolute;
   right: 43px;
   top: -9px;
-  display: none;
-  width: 450px;
+  display: block;
+  width: 315px;
   padding: 10px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -1549,14 +1549,14 @@ body.s_layout_fixed #wrapper {
   font-size: 11px;
 }
 #search_bar input {
-  width: 142px;
+  width: 200px;
 }
 #search_bar .s_button_1 {
-  width: 50px;
+  width: 72px;
   margin-left: 0;
 }
 #adv_search_box .s_button_1 {
-  width: 80px;
+  width: 72px;
   margin-left: 0;
 }
 #search_bar .s_button_1 .s_text,
@@ -1818,10 +1818,9 @@ body.s_layout_fixed #wrapper {
 }
 #cart_menu .s_submenu {
   left: auto;
-  right: -7px;
-  width: 180px;
-  margin-top: 7px;
+  right: 1px;
   padding: 20px;
+  top:85%;
 }
 #cart_menu:hover .s_grand_total {
   z-index: 20;
@@ -1981,7 +1980,10 @@ body.s_layout_fixed #wrapper {
 
 
 .tabsa ul li {
-  display: inline-block;
+      display: inline-block;
+    height: 58px;
+    line-height: 19px;
+    vertical-align: middle;
 
 }
 .tabsa_style {
@@ -2066,6 +2068,7 @@ body.s_layout_fixed #wrapper {
 }
 #intro_2 h2, #intro h2 a {
   font-size: 32px;
+
 }
 #intro {
   clear: both;
@@ -2109,6 +2112,7 @@ body.s_layout_fixed #wrapper {
 }
 #intro h2, #intro h2 a {
   font-size: 32px;
+    margin-top: 0px;
 }
 #intro .slideItem {
 }
@@ -2711,7 +2715,7 @@ body.s_layout_fixed #wrapper {
   clear: both;
   margin: 20px 0 27px 0;
   padding: 19px 0 0 0;
-  font-size: 11px;
+  font-size: 1.1em;
   color: #555;
   background: url(../images/shop_info.gif) repeat-x top left;
 }
@@ -2726,7 +2730,7 @@ body.s_layout_fixed #wrapper {
   color: #888;
   border-bottom: 1px solid #e3e3e3;
 }
-#shop_description {font-size: 11px;}
+#shop_description {font-size: 0.9em;}
 
 #shop_description p {margin-right: 10px;}
 .s_phone_32,
@@ -2777,18 +2781,18 @@ body.s_layout_fixed #wrapper {
   content: "."
 }
 #twitter ul {
-  margin-bottom: -20px;
+
 }
 
 
 #facebook .s_widget_holder {
-  margin-top: -46px;
+
 }
 
 
 
 #shop_contacts {
-  font-size: 12px;
+  font-size: 0.8em;
 }
 
 #shop_contacts td {
